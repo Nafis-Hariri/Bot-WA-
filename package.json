@@ -1,0 +1,31 @@
+{
+  "name": "whatsapp-gemini-bot",
+  "version": "1.0.0",
+  "description": "Bot WhatsApp terintegrasi dengan Google Gemini AI (chat, image, voice)",
+  "main": "src/index.js",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js"
+  },
+  "keywords": ["whatsapp", "bot", "gemini", "ai"],
+  "author": "",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "@google/generative-ai": "^0.21.0",
+    "baileys": "^6.7.5",
+    "dotenv": "^16.4.5",
+    "pino": "^9.0.0",
+    "qrcode": "^1.5.4",
+    "fs-extra": "^11.2.0",
+    "node-cron": "^4.0.0",
+    "sharp": "^0.33.5"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "@types/qrcode": "^1.5.5",
+    "tsx": "^4.19.0",
+    "typescript": "^5.5.0"
+  }
+}
