@@ -1,19 +1,27 @@
 # 🤖 WhatsApp Bot with Google Gemini AI
 
-Bot WhatsApp yang terintegrasi dengan Google Gemini AI. Fitur utama:
-- ✅ Chat AI (Gemini 1.5 Flash)
-- 🖼️ Image recognition (dalam pengembangan)
-- 🎧 Voice transcription (dalam pengembangan)
-- ⏱️ Rate limiting built-in
-- 🔄 Auto-reconnect
+Bot WhatsApp yang terintegrasi dengan **Google Gemini AI** untuk chatting, image understanding, dan voice features.
+
+## ✨ Fitur Utama
+
+- ✅ **Chat AI** — Terintegrasi dengan Google Gemini 1.5 Flash
+- 🖼️ **Image Recognition** — Terima dan proses gambar (dalam pengembangan)
+- 🎧 **Voice Transcription** — Terima dan proses suara (dalam pengembangan)
+- ⏱️ **Rate Limiting** — Mencegah spam pesan
+- 🔄 **Auto-reconnect** — Tidak perlu restart manual
+- 💾 **Session Persistence** — Save/restore koneksi WhatsApp
+
+---
 
 ## 📋 Prerequisites
 
-1. Node.js 20+ (sudah terinstall)
-2. NPM 10+ (sudah terinstall)
-3. Google Gemini API Key (dari [aistudio.google.com/apikey](https://aistudio.google.com/apikey))
+1. **Node.js** v20+ (sudah terinstal)
+2. **npm** v10+ (sudah terinstal)
+3. **Google Gemini API Key** — [Dapatkan di sini](https://aistudio.google.com/apikey)
 
-## 🚀 Langkah-langkah
+---
+
+## 🚀 Langkah Instalasi & Menjalankan
 
 ### 1. Install Dependencies
 ```bash
@@ -21,54 +29,83 @@ npm install
 ```
 
 ### 2. Konfigurasi API Key
-Salin `.env.example` ke `.env` dan ganti `YOUR_API_KEY_HERE`:
 ```bash
 cp .env.example .env
-# Edit .env, ganti GEMINI_API_KEY=AIzaSyYOUR_API_KEY_HERE
+# Edit file .env dan isi GEMINI_API_KEY=your_key_di_sini
 ```
 
 ### 3. Jalankan Bot
-```bash
-# Development mode (auto-reload)
-npm run dev
 
-# Atau build lalu start
+**Mode Development (auto-reload):**
+```bash
+npm run dev
+```
+
+**Mode Production:**
+```bash
 npm run build
 npm start
 ```
 
 ### 4. Scan QR Code
-Buka WhatsApp di HP, buka menu **Linked devices** → **Link a device**, lalu scan QR code yang muncul di terminal.
+
+1. Bot akan otomatis mengeluarkan **QR code** di terminal
+2. Buka WhatsApp di ponsel Anda
+3. Pilih **Menu → Linked devices → Link a device**
+4. **Scan QR code** tersebut dengan kamera ponsel
+5. Tunggu hingga status **"Connected"** di terminal
+
+### 5. Uji Bot
+Kirim pesan ke bot atau foto, bot akan merespons via Gemini AI.
+
+---
 
 ## 📁 Struktur Proyek
+
 ```
 src/
 ├── index.ts          # Entry point
-├── bot.ts            # Message handler
+├── bot.ts            # Message handler + Gemini logic
 ├── whatsapp.ts       # WhatsApp connection (Baileys)
-├── gemini.ts         # Gemini AI integration
-├── config.ts         # Configuration
-└── types.ts          # Type definitions
+├── gemini.ts         # Google Gemini AI integration
+├── config.ts         # Configuration management
+└── types.ts          # TypeScript definitions
 ```
 
-## 🛠️ Konfigurasi
+---
 
-Buka `.env` dan sesuaikan:
-- `GEMINI_API_KEY`: Google Gemini API key (wajib)
-- `WHATSAPP_SESSION_PATH`: Folder untuk session WhatsApp
-- `BOT_NAME`: Nama bot
-- `RATE_LIMIT_ENABLED`: Aktifkan rate limiting
-- `RATE_LIMIT_MAX_REQUESTS`: Maksimal request per window
+## ⚙️ Konfigurasi Environment
 
-## 📝 Catatan
+| Variable | Default | Keterangan |
+|----------|---------|-----------|
+| `GEMINI_API_KEY` | - | **Wajib**. Google Gemini API key |
+| `WHATSAPP_SESSION_PATH` | `./auth_info` | Lokasi penyimpanan session WhatsApp |
+| `BOT_NAME` | `GeminiBot` | Nama bot yang akan muncul |
+| `RATE_LIMIT_ENABLED` | `true` | Aktifkan/disable rate limiting |
+| `RATE_LIMIT_WINDOW_MS` | `60000` | Window rate limit (ms) |
+| `RATE_LIMIT_MAX_REQUESTS` | `10` | Maksimal request per window |
 
-- Bot ini menggunakan library [Baileys](https://github.com/adihajij/baileys) untuk koneksi WhatsApp
-- AI provider: Google Gemini 1.5 Flash
-- Session disimpan di folder `./auth_info`
-- Rate limiting mencegah spam
+---
 
-## ⚠️ Peringatan
+## 🐳 Docker Support
 
-- Jangan share API key ke publik
-- Jangan commit file `.env` ke repository (sudah di .gitignore)
-- Bot ini untuk keperluan belajar, bukan komersial
+```bash
+# Build & Run
+docker build -t whatsapp-gemini-bot .
+docker run -d whatsapp-gemini-bot
+```
+
+---
+
+## ⚠️ Peringatan & Disclaimer
+
+- Jangan **commit** file `.env` ke repository (sudah ada di `.gitignore`)
+- Bot ini untuk **keperluan pembelajaran**, bukan komersial
+- Gemini API memiliki rate limit dan biaya
+- Gunakan **Baileys** dengan bijak, pastikan tidak melanggar WhatsApp Terms
+
+---
+
+## 📄 License
+
+MIT
